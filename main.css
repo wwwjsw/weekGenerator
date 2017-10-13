@@ -1,0 +1,25 @@
+.week{
+    display:flex;
+    align-items: stretch;
+    width:655px;
+    background-color:#818181;
+    margin-left: 20px;
+    justify-content:space-around;
+    height: 39px;
+  }
+  .day{
+    padding:10px;
+    flex-grow: 1;
+    text-align: center;
+  }
+  .day a{
+    color:#fff;
+  }
+  .actual_day{
+      border-bottom: 8px solid #289DF8;
+      flex-grow: 7.7 !important;
+      text-align: left;
+  }
+  .actual_day a{
+    font-weight: 800;
+  }
