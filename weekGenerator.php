@@ -4,32 +4,23 @@
 	*/
 	class weekGenerator
 	{
-		
-		function __construct()
-		{
-			# code...
-		}
-		function translateDay($initialDate = null)
-		{
-			$weekDay = array('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado');
-			$initialDate = date('Y-m-d');
-			
-			$diasemana_numero = date('w', strtotime($initialDate));
-			
-			echo $weekDay[$diasemana_numero];
-		}
 		function weekDays($day)
-		{
-			$html = "<div class='day actual_day'><a onclick='document.getElementById('dia').value = '1'; document.getElementById('weekSearch').submit()'>Hoje</a></div>";
-			$html .= "<div class='day'><a onclick='document.getElementById('dia').value = '2'; document.getElementById('weekSearch').submit()'>Ter</a></div>";
-			$html .= "<div class='day'><a onclick='document.getElementById('dia').value = '3'; document.getElementById('weekSearch').submit()'>Qua</a></div>";
-			$html .= "<div class='day'><a onclick='document.getElementById('dia').value = '4'; document.getElementById('weekSearch').submit()'>Qui</a></div>";
-			$html .= "<div class='day'><a onclick='document.getElementById('dia').value = '5'; document.getElementById('weekSearch').submit()'>Sex</a></div>";
-			$html .= "<div class='day'><a onclick='document.getElementById('dia').value = '6'; document.getElementById('weekSearch').submit()'>Sab</a></div>";
-			$html .= "<div class='day'><a onclick='document.getElementById('dia').value = '7'; document.getElementById('weekSearch').submit()'>Dom</a></div>";
-			$html .= "<div class='day'><a onclick='document.getElementById('dia').value = '7'; document.getElementById('weekSearch').submit()'>{$day}</a></div>";
-			return $html;
-		}
+			{
+				$ret = '';
+				$a = [ 1 => 'Seg' , 2 => 'Ter' , 3 => 'Qua' , 4 => 'Qui' , 5 => 'Sex' , 6 => 'Sab' , 7 => 'Dom' ];
+				$b[] = array_slice($a, $day - 1 );
+				$b[] = array_slice($a, 0 , $day - 1 );
+				$c   = array_merge_recursive( $b[0] , $b[1] );
+
+				foreach ($c as $key => $value) {
+					if($key == 0){
+						$ret = $ret . "<div class=\"day actual_day\"><a onclick='document.getElementById(\"dia\").value =\"$key\"; document.getElementById(\"weekSearch\").submit()'>Hoje</a></div>";
+					}else{
+						$ret = $ret . "<div class=\"day\"><a onclick='document.getElementById(\"dia\").value =\"$key\"; document.getElementById(\"weekSearch\").submit()'>$value</a></div>";
+					}
+				}
+				return $ret;		
+			}
 		function generate($initialDay)
 		{
 			$html = "<form id='weekSearch' method='post' action=''>";
