@@ -14,6 +14,7 @@
   }
   .day a{
     color:#fff;
+    cursor: pointer;
   }
   .actual_day{
       border-bottom: 8px solid #289DF8;
